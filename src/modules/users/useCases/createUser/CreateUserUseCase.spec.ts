@@ -6,6 +6,12 @@ import { CreateUserUseCase } from "./CreateUserUseCase"
 let createUserUseCase: CreateUserUseCase;
 let inMemoryUsersRepository: InMemoryUsersRepository;
 
+const user = {
+    name: "User test",
+    email: "igorlacerdasantos@hotmail.com",
+    password: "123456"
+}
+
 describe("Create User", () => {
 
     beforeEach(() => {
@@ -14,12 +20,6 @@ describe("Create User", () => {
     })
 
     it("should be create a new user!", async () => {
-        const user = {
-            name: "User test",
-            email: "igorlacerdasantos@hotmail.com",
-            password: "123456"
-        }
-
         const createdUser = await createUserUseCase.execute({
             name: user.name,
             email: user.email,
@@ -31,12 +31,6 @@ describe("Create User", () => {
 
 
     it("Shouldn't be able to crate a user with a already exists e-mail", async () => {
-        const user = {
-            name: "User test",
-            email: "igorlacerdasantos@hotmail.com",
-            password: "123456"
-        }
-
         expect(async () => {
             await createUserUseCase.execute({
                 name: user.name,
